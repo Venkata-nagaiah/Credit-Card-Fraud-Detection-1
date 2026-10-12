@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Fraud Detection | Combined RF & Boosting ML Engine</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!-- Chart.js CDN for live algorithm benchmark charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Top Blue Navbar (#0b63ce) matching screenshots
+       ========================================================================== -->
+  <header class="top-header">
+    <div class="header-container">
+      <div class="header-branding">
+        <div class="brand-icon">💳</div>
+        <div class="brand-titles">
+          <h1>Credit Card Fraud Detection</h1>
+          <p>Combined Random Forest &amp; Boosting ML Security Engine</p>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#history">History</a></li>
+          <li><a href="#algorithms">Algorithms</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#protection">Public Protection</a></li>
+          <li><a href="#about" class="about-btn">About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mini credit card badge from top-right of screenshot -->
+      <div class="header-mini-card">
+        <div class="mini-card-top">
+          <div class="mini-chip"></div>
+          <span class="mini-dots">&bull;&bull;&bull;&bull; 9840</span>
+        </div>
+        <div class="mini-card-bottom">
+          <span>A. VENKATESH</span>
+          <span class="mini-visa">VISA</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Main Project Body (White Background #ffffff)
+       ========================================================================== -->
+  <main class="main-wrapper">
+
+    <!-- Hero Dark Card Section from Screenshot 4 -->
+    <section class="hero-dark-card">
+      <div class="hero-content">
+        <h2>Credit Card Fraud Detection</h2>
+        <p>
+          Enter transaction details to evaluate single combined positive/negative result using
+          <strong>Random Forest (99.81%)</strong> &amp; <strong>Gradient Boosting (99.85%)</strong>
+          algorithms with audio buzzer feedback.
+        </p>
+        <div class="hero-tags">
+          <span class="tag-pill">Ensemble Soft-Voting</span>
+          <span class="tag-pill">PaySim Anomaly Math</span>
+          <span class="tag-pill">OrgDelta &amp; DestDelta</span>
+          <span class="tag-pill">Audio Buzzer Alarm</span>
+        </div>
+      </div>
+
+      <!-- Realistic 3D SBI Bank Credit Card -->
+      <div class="card-showcase-wrapper">
+        <div class="realistic-credit-card">
+          <div class="card-bank-row">
+            <span class="bank-logo">🏛️ SBI BANK</span>
+            <span class="contactless-icon">📶</span>
+          </div>
+
+          <div class="chip-waves-row">
+            <div class="emv-chip" title="Gold EMV Chip"></div>
+          </div>
+
+          <div class="card-number" id="cardDisplayNumber">5412 7500 1234 5678</div>
+
+          <div class="card-details-row">
+            <div>
+              <div class="cardholder-name" id="cardDisplayName">AMBATI VENKATESH</div>
+              <div class="card-expiry">VALID THRU: 11/27</div>
+            </div>
+            <div class="card-brand-logo">mastercard</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Platform Predictor Form Section
+         ========================================================================== -->
+    <section id="platform" class="platform-card">
+      <div class="section-header">
+        <h3>🔍 Transaction Fraud Detection Platform</h3>
+        <p>Fill in the input features of the transaction to evaluate combined single positive or negative result.</p>
+      </div>
+
+      <!-- Quick Test Preset Buttons -->
+      <div class="presets-bar">
+        <span class="presets-label">⚡ Quick Test Presets:</span>
+        <button type="button" class="preset-chip fraud" onclick="loadPreset('stolen_drain')">
+          🚨 Stolen Card Drain Fraud ($500k)
+        </button>
+        <button type="button" class="preset-chip fraud" onclick="loadPreset('negative_mismatch')">
+          🚨 Negative / Mismatch Fraud (-0.07 ➔ 10000)
+        </button>
+        <button type="button" class="preset-chip fraud" onclick="loadPreset('discrepancy_transfer')">
+          ⚠️ Balance Discrepancy Fraud ($240k)
+        </button>
+        <button type="button" class="preset-chip safe" onclick="loadPreset('grocery_payment')">
+          ✅ Safe Balanced Payment ($42.50)
+        </button>
+        <button type="button" class="preset-chip safe" onclick="loadPreset('atm_cashout')">
+          ✅ Safe Balanced Transfer ($500)
+        </button>
+      </div>
+
+      <form id="fraudForm">
+        <div class="form-grid">
+          <!-- Transaction ID -->
+          <div class="form-group">
+            <label class="form-label" for="txId">
+              Transaction ID
+              <span class="label-hint" onclick="generateNewTxId()" style="cursor: pointer; color: #0b63ce; font-weight: 700;">🔄 Generate ID</span>
+            </label>
+            <input type="text" id="txId" class="form-input" value="TX-98401" placeholder="e.g. TX-98401" required>
+          </div>
+
+          <!-- Transaction Type -->
+          <div class="form-group">
+            <label class="form-label" for="txType">
+              Transaction Type
+              <span class="label-hint">PaySim category</span>
+            </label>
+            <select id="txType" class="form-select" required onchange="calculateLiveDeltas()">
+              <option value="TRANSFER" selected>TRANSFER (High Risk Category)</option>
+              <option value="CASH_OUT">CASH_OUT (High Risk Category)</option>
+              <option value="PAYMENT">PAYMENT (Merchant)</option>
+              <option value="CASH_IN">CASH_IN (Account Deposit)</option>
+              <option value="DEBIT">DEBIT (Standard Purchase)</option>
+            </select>
+          </div>
+
+          <!-- Transaction Amount -->
+          <div class="form-group">
+            <label class="form-label" for="txAmount">
+              Transaction Amount ($)
+              <span class="label-hint">Value in USD</span>
+            </label>
+            <input type="number" id="txAmount" class="form-input" step="0.01" value="500.00" required oninput="calculateLiveDeltas()">
+          </div>
+
+          <!-- Step / Hour -->
+          <div class="form-group">
+            <label class="form-label" for="txStep">
+              Transaction Step / Hour
+              <span class="label-hint">1-744 simulation hour</span>
+            </label>
+            <input type="number" id="txStep" class="form-input" min="1" max="744" value="12" required>
+          </div>
+
+          <!-- Sender Balance Before -->
+          <div class="form-group">
+            <label class="form-label" for="oldbalanceOrg">
+              Sender Balance Before Transaction was made
+              <span class="label-hint">OldBalanceOrig</span>
+            </label>
+            <input type="number" id="oldbalanceOrg" class="form-input" step="0.01" value="2500.00" required oninput="calculateLiveDeltas()">
+          </div>
+
+          <!-- Sender Balance After -->
+          <div class="form-group">
+            <label class="form-label" for="newbalanceOrig">
+              Sender Balance After Transaction was made
+              <span class="label-hint">NewBalanceOrig (Before - Amount)</span>
+            </label>
+            <input type="number" id="newbalanceOrig" class="form-input" step="0.01" value="2000.00" required oninput="calculateLiveDeltas()">
+          </div>
+
+          <!-- Recipient Balance Before -->
+          <div class="form-group">
+            <label class="form-label" for="oldbalanceDest">
+              Recipient Balance Before Transaction was made
+              <span class="label-hint">OldBalanceDest</span>
+            </label>
+            <input type="number" id="oldbalanceDest" class="form-input" step="0.01" value="1000.00" required oninput="calculateLiveDeltas()">
+          </div>
+
+          <!-- Recipient Balance After -->
+          <div class="form-group">
+            <label class="form-label" for="newbalanceDest">
+              Recipient Balance After Transaction was made
+              <span class="label-hint">NewBalanceDest (Before + Amount)</span>
+            </label>
+            <input type="number" id="newbalanceDest" class="form-input" step="0.01" value="1500.00" required oninput="calculateLiveDeltas()">
+          </div>
+        </div>
+
+        <!-- Live Delta Calculations Box -->
+        <div class="delta-preview-box">
+          <div class="delta-item">
+            <span>OrgDelta Equation:</span>
+            <code id="orgDeltaEquation">1250.00 - 1207.50 - 42.50 = 0.00</code>
+            <span id="orgDeltaBadge" class="delta-val normal">Δ 0.00</span>
+          </div>
+          <div class="delta-item">
+            <span>DestDelta Equation:</span>
+            <code id="destDeltaEquation">0.00 - 0.00 - 42.50 = -42.50</code>
+            <span id="destDeltaBadge" class="delta-val normal">Merchant OK</span>
+          </div>
+          <div class="delta-item">
+            <span>System Threshold ($200k):</span>
+            <span id="systemFlagBadge" class="delta-val normal">FLAG 0</span>
+          </div>
+        </div>
+
+        <!-- Submit & Sound Action Row -->
+        <div class="submit-btn-row">
+          <button type="submit" id="submitBtn" class="detect-btn">
+            <span>⚡</span> DETECT TRANSACTION FRAUD STATUS
+          </button>
+          <button type="button" id="soundToggleBtn" class="sound-toggle-btn" title="Toggle audio buzzer alert" onclick="toggleAudio()">
+            🔊 Sound: ON
+          </button>
+        </div>
+      </form>
+
+      <!-- Prediction Result Container (Appears on prediction) -->
+      <div id="resultContainer" class="result-container">
+        <!-- Unified Verdict Banner -->
+        <div id="verdictBanner" class="verdict-banner safe">
+          <div class="verdict-main">
+            <div class="verdict-tx-id" id="verdictTxId">Transaction ID: TX-98401</div>
+            <h2 id="verdictTitle">✅ TRANSACTION LEGITIMATE</h2>
+            <p id="verdictSubtitle">Both ML models classified this transaction as normal safe behavior.</p>
+          </div>
+          <div class="verdict-meter-box">
+            <div id="combinedProbValue" class="meter-percentage">0.06%</div>
+            <div class="meter-label">Combined Fraud Risk</div>
+          </div>
+        </div>
+
+        <!-- Risk Factors & Balance Math Notes -->
+        <div class="risk-details-card">
+          <h4>📋 Security Engine Risk Factor Analysis:</h4>
+          <ul id="riskFactorsList" class="risk-list">
+            <li>✅ Sender balance subtraction matches transaction value perfectly.</li>
+            <li>✅ Transaction value falls well within standard cardholder limits.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Connected Dataset Detection Logs (History Table from Screenshot 1)
+         ========================================================================== -->
+    <section id="history" class="history-section">
+      <div class="history-header-row">
+        <div class="section-header" style="margin-bottom: 0;">
+          <h3>📜 History — Connected Dataset Detection Logs</h3>
+          <p>Real-time history table storing member transactions, system flags, algorithm probability scores, and positive/negative status.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button type="button" class="clear-btn" onclick="exportHistoryCSV()">
+            📥 Export CSV
+          </button>
+          <button type="button" class="clear-btn" onclick="clearHistoryLog()">
+            🗑️ Clear History Log
+          </button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>TX ID</th>
+              <th>Timestamp</th>
+              <th>Type</th>
+              <th>Amount ($)</th>
+              <th>Sender (Old ➔ New)</th>
+              <th>Recipient (Old ➔ New)</th>
+              <th>OrgDelta</th>
+              <th>Flag</th>
+              <th>RF Score</th>
+              <th>GB Score</th>
+              <th>Final Verdict</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <!-- Dynamically populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Algorithms Benchmark Section (Charts from Screenshot 3)
+         ========================================================================== -->
+    <section id="algorithms" class="algorithms-section">
+      <div class="section-header">
+        <h3>📊 Algorithms Benchmark &amp; Multi-Metric Comparison</h3>
+        <p>Direct comparison of Random Forest (99.81%) and Gradient Boosting (99.85%) trained on PaySim transaction matrices.</p>
+      </div>
+
+      <div class="charts-grid">
+        <!-- Bar Chart: Multi-Metric Comparison -->
+        <div class="chart-card">
+          <h4>📈 Evaluation Metrics (RF vs Boosting)</h4>
+          <div class="chart-wrapper">
+            <canvas id="metricsChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Line Chart: ROC Curve -->
+        <div class="chart-card">
+          <h4>🎯 Receiver Operating Characteristic (ROC Curve)</h4>
+          <div class="chart-wrapper">
+            <canvas id="rocChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Features Work Section (from Screenshots 3 & 5)
+         ========================================================================== -->
+    <section id="features" class="features-section">
+      <div class="section-header">
+        <h3>⚙️ Features Work — Practical Feature Engineering Diagrams &amp; Data Pipeline</h3>
+        <p>Physical architectural diagrams and visual illustrations demonstrating how Credit Card Fraud Detection feature work is processed step-by-step.</p>
+      </div>
+
+      <!-- Infographic Pipeline Box -->
+      <div class="infographic-card">
+        <div class="infographic-header">
+          🖼️ Feature Work Infographic Pipeline Diagram
+        </div>
+        <div class="pipeline-diagram">
+          <div class="pipeline-step">
+            <div class="step-circle">1</div>
+            <span class="step-label">Raw PaySim<br>Transaction</span>
+          </div>
+          <span class="pipeline-arrow">➔</span>
+          <div class="pipeline-step">
+            <div class="step-circle">2</div>
+            <span class="step-label">OrgDelta &amp; DestDelta<br>Equations</span>
+          </div>
+          <span class="pipeline-arrow">➔</span>
+          <div class="pipeline-step">
+            <div class="step-circle">3</div>
+            <span class="step-label">EMV Chip &amp;<br>One-Hot Encoding</span>
+          </div>
+          <span class="pipeline-arrow">➔</span>
+          <div class="pipeline-step">
+            <div class="step-circle">4</div>
+            <span class="step-label">Dual Model<br>RF &amp; Boosting</span>
+          </div>
+          <span class="pipeline-arrow">➔</span>
+          <div class="pipeline-step">
+            <div class="step-circle">5</div>
+            <span class="step-label">Single Combined<br>Verdict &amp; Buzzer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Feature Work Cards (Matching Screenshot 5) -->
+      <div class="feature-work-grid">
+        <!-- Card 1 -->
+        <div class="feature-box">
+          <div class="feature-num-title">
+            <div class="feature-badge-num">1</div>
+            <div class="feature-title-text">Balance Delta Work</div>
+          </div>
+          <div class="feature-subtitle">OrgDelta &amp; DestDelta Analysis</div>
+          <p class="feature-description">
+            Calculates balance discrepancy equations:
+          </p>
+          <div class="feature-equation">
+            OrgDelta = OldBalanceOrig - NewBalanceOrig - Amount
+          </div>
+          <p class="feature-description">
+            Zero remaining destination balances on high transfers signal stolen card compromise.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="feature-box">
+          <div class="feature-num-title">
+            <div class="feature-badge-num">2</div>
+            <div class="feature-title-text">EMV Chip Security Work</div>
+          </div>
+          <div class="feature-subtitle">Chip Token Signal Processing</div>
+          <p class="feature-description">
+            Extracts POS terminal microchip crypto tokens, cardholder Sender ID / Receiver ID signatures, and verifies cryptographic authorization hashes.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="feature-box">
+          <div class="feature-num-title">
+            <div class="feature-badge-num">3</div>
+            <div class="feature-title-text">One-Hot &amp; System Flag</div>
+          </div>
+          <div class="feature-subtitle">Categorical &amp; Threshold Work</div>
+          <p class="feature-description">
+            Converts 5 transfer types into one-hot binary vectors ('Cash Out', 'Transfer'). Triggers 'System Flag = 1' whenever transaction exceeds $200,000.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Public Protection Section (from Screenshot 5)
+         ========================================================================== -->
+    <section id="protection" class="protection-section">
+      <div class="section-header">
+        <h3>🛡️ How Credit Card Fraud Detection Helps the Public &amp; How to Stop Frauds</h3>
+        <p>Practical protection mechanisms, automated card locks, and physical security safeguards protecting cardholders from financial fraud.</p>
+      </div>
+
+      <div class="protection-grid">
+        <div class="protection-card">
+          <div class="protection-icon">🔒</div>
+          <h4>Automated Real-Time Card Freezes</h4>
+          <p>Instant sub-second blocking on accounts undergoing abnormal velocity, high-value transfers, or total balance drain attacks.</p>
+        </div>
+
+        <div class="protection-card">
+          <div class="protection-icon">💳</div>
+          <h4>EMV Dynamic Cryptogram Tokenization</h4>
+          <p>Every transaction generates a single-use crypto token, eliminating the risk of cloned magnetic stripe counterfeit cards.</p>
+        </div>
+
+        <div class="protection-card">
+          <div class="protection-icon">🔔</div>
+          <h4>Auditory &amp; Push Buzzer Notifications</h4>
+          <p>Direct audible warning feedback and immediate SMS / Mobile Bank authorization requests whenever balance discrepancies trigger flags.</p>
+        </div>
+
+        <div class="protection-card">
+          <div class="protection-icon">📱</div>
+          <h4>Two-Factor Multi-Tier Authentication</h4>
+          <p>Enforces biometric and OTP confirmation for any transaction flagged with high balance deltas or exceeding threshold limits.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         About Section & Team Members (Requested by User)
+         ========================================================================== -->
+    <section id="about" class="about-section">
+      <div class="about-simple-box">
+        <h3 class="about-simple-title">About</h3>
+        <div class="about-team-info">
+          <div class="about-row">
+            <span class="about-label">Team Leader -</span>
+            <span class="about-name">Ambati Venkatesh</span>
+          </div>
+          <div class="about-row">
+            <span class="about-label">Team Members -</span>
+            <span class="about-name">Mallapuram Venkata Rao, Nunavath Ramesh, Vineeth</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Credit Card Fraud Detection System. All rights reserved. Powered by Random Forest &amp; Gradient Boosting Machine Learning.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/audio.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

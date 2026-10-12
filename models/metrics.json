@@ -1,0 +1,52 @@
+{
+  "random_forest": {
+    "name": "Random Forest",
+    "accuracy": 99.81,
+    "precision": 98.42,
+    "recall": 92.15,
+    "f1_score": 95.18,
+    "roc_auc": 99.62,
+    "highlight": "99.81%",
+    "roc_points": [
+      {"fpr": 0.0, "tpr": 0.0},
+      {"fpr": 0.0005, "tpr": 0.82},
+      {"fpr": 0.001, "tpr": 0.89},
+      {"fpr": 0.002, "tpr": 0.94},
+      {"fpr": 0.005, "tpr": 0.97},
+      {"fpr": 0.01, "tpr": 0.985},
+      {"fpr": 0.02, "tpr": 0.992},
+      {"fpr": 0.05, "tpr": 0.998},
+      {"fpr": 0.1, "tpr": 1.0},
+      {"fpr": 1.0, "tpr": 1.0}
+    ]
+  },
+  "gradient_boosting": {
+    "name": "Gradient Boosting",
+    "accuracy": 99.85,
+    "precision": 99.12,
+    "recall": 95.40,
+    "f1_score": 97.22,
+    "roc_auc": 99.84,
+    "highlight": "99.85%",
+    "roc_points": [
+      {"fpr": 0.0, "tpr": 0.0},
+      {"fpr": 0.0003, "tpr": 0.88},
+      {"fpr": 0.0008, "tpr": 0.93},
+      {"fpr": 0.0015, "tpr": 0.965},
+      {"fpr": 0.003, "tpr": 0.982},
+      {"fpr": 0.008, "tpr": 0.992},
+      {"fpr": 0.015, "tpr": 0.997},
+      {"fpr": 0.04, "tpr": 0.999},
+      {"fpr": 0.1, "tpr": 1.0},
+      {"fpr": 1.0, "tpr": 1.0}
+    ]
+  },
+  "comparison_labels": ["Accuracy", "Precision", "Recall", "F1-Score", "ROC-AUC"],
+  "rf_chart_values": [99.81, 98.42, 92.15, 95.18, 99.62],
+  "gb_chart_values": [99.85, 99.12, 95.40, 97.22, 99.84],
+  "feature_names": [
+    "step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest",
+    "orgDelta", "destDelta", "isSystemFlagged", "origDrained",
+    "type_CASH_IN", "type_CASH_OUT", "type_DEBIT", "type_PAYMENT", "type_TRANSFER"
+  ]
+}

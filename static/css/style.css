@@ -1,0 +1,1194 @@
+/* ==========================================================================
+   Credit Card Fraud Detection - Main Stylesheet
+   Color Theme: Top Blue (#0b63ce), Background White (#ffffff / #f8fafc)
+   ========================================================================== */
+
+:root {
+  --primary-blue: #0b63ce;
+  --primary-blue-dark: #084aa0;
+  --primary-blue-light: #2579e3;
+  --bg-white: #ffffff;
+  --bg-slate: #f8fafc;
+  --bg-dark-hero: #0e1726;
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --border-light: #e2e8f0;
+  --danger-red: #ef4444;
+  --danger-bg: #fef2f2;
+  --danger-border: #fca5a5;
+  --success-green: #10b981;
+  --success-bg: #ecfdf5;
+  --success-border: #6ee7b7;
+  --warning-amber: #f59e0b;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --elevated-shadow: 0 10px 25px -5px rgba(11, 99, 206, 0.1), 0 8px 10px -6px rgba(11, 99, 206, 0.05);
+  --border-radius-lg: 16px;
+  --border-radius-md: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Top Blue Header & Navigation
+   ========================================================================== */
+.top-header {
+  background: linear-gradient(90deg, #0957b7 0%, #0b63ce 50%, #1570e6 100%);
+  color: #ffffff;
+  padding: 14px 32px;
+  box-shadow: 0 4px 14px rgba(11, 99, 206, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.header-branding {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  font-size: 28px;
+  background: rgba(255, 255, 255, 0.15);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brand-titles h1 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-titles p {
+  font-size: 0.82rem;
+  opacity: 0.9;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.pro-badge {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: all 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.about-btn {
+  background: #ffffff !important;
+  color: var(--primary-blue) !important;
+  font-weight: 700 !important;
+  padding: 7px 18px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.about-btn:hover {
+  background: #f0f7ff !important;
+  transform: translateY(-1px);
+}
+
+/* Header Mini Credit Card */
+.header-mini-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 140px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mini-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mini-chip {
+  width: 14px;
+  height: 10px;
+  background: #fbbf24;
+  border-radius: 2px;
+}
+
+.mini-dots {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.mini-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+.mini-visa {
+  color: #ffffff;
+  font-style: italic;
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   Main Container Layout
+   ========================================================================== */
+.main-wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+/* ==========================================================================
+   Hero Dark Banner
+   ========================================================================== */
+.hero-dark-card {
+  background: linear-gradient(145deg, #0d1527 0%, #111d33 60%, #0f172a 100%);
+  color: #ffffff;
+  border-radius: var(--border-radius-lg);
+  padding: 38px 44px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid #1e293b;
+  box-shadow: 0 20px 35px -10px rgba(11, 99, 206, 0.15);
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-dark-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(11, 99, 206, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(11, 99, 206, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-content h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.hero-content p {
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  margin-bottom: 22px;
+  line-height: 1.65;
+}
+
+.hero-tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tag-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Realistic Credit Card Mockup */
+.card-showcase-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.realistic-credit-card {
+  width: 360px;
+  height: 225px;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e3a8a 100%);
+  border-radius: 16px;
+  padding: 22px 24px;
+  color: #ffffff;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: perspective(800px) rotateY(-6deg) rotateX(4deg);
+  transition: transform 0.4s ease;
+}
+
+.realistic-credit-card:hover {
+  transform: perspective(800px) rotateY(0deg) rotateX(0deg) translateY(-4px);
+}
+
+.card-bank-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bank-logo {
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #93c5fd;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chip-waves-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 10px 0;
+}
+
+.emv-chip {
+  width: 44px;
+  height: 34px;
+  background: linear-gradient(135deg, #fef08a 0%, #ca8a04 100%);
+  border-radius: 6px;
+  border: 1px solid #a16207;
+  position: relative;
+}
+
+.emv-chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.contactless-icon {
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+.card-number {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  margin: 6px 0;
+}
+
+.card-details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cardholder-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.card-expiry {
+  font-size: 0.72rem;
+  color: #cbd5e1;
+}
+
+.card-brand-logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #fbbf24;
+  letter-spacing: -1px;
+}
+
+/* ==========================================================================
+   Section Title Styling
+   ========================================================================== */
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Platform Form & Predictor Section
+   ========================================================================== */
+.platform-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--card-shadow);
+  padding: 32px;
+  margin-bottom: 36px;
+}
+
+/* Quick Presets Bar */
+.presets-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: var(--bg-slate);
+  border-radius: var(--border-radius-md);
+  margin-bottom: 28px;
+  border: 1px solid var(--border-light);
+}
+
+.presets-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.preset-chip {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-dark);
+}
+
+.preset-chip:hover {
+  background: #eff6ff;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  transform: translateY(-1px);
+}
+
+.preset-chip.fraud {
+  border-left: 3px solid var(--danger-red);
+}
+
+.preset-chip.safe {
+  border-left: 3px solid var(--success-green);
+}
+
+/* Inputs Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  justify-content: space-between;
+}
+
+.label-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.form-input,
+.form-select {
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--border-radius-md);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: #ffffff;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(11, 99, 206, 0.15);
+}
+
+/* Delta Calculation Preview Box */
+.delta-preview-box {
+  background: #f1f5f9;
+  border-radius: var(--border-radius-md);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 26px;
+  flex-wrap: wrap;
+  gap: 16px;
+  border: 1px dashed #cbd5e1;
+}
+
+.delta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.delta-val {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.95rem;
+}
+
+.delta-val.normal {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.delta-val.alert {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Submit Action Button */
+.submit-btn-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.detect-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #0b63ce 0%, #1570e6 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: 16px 28px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(11, 99, 206, 0.35);
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.detect-btn:hover {
+  background: linear-gradient(135deg, #084aa0 0%, #0b63ce 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(11, 99, 206, 0.45);
+}
+
+.sound-toggle-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--border-radius-md);
+  padding: 15px 18px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #475569;
+}
+
+.sound-toggle-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ==========================================================================
+   Prediction Output Card (Unified Verdict)
+   ========================================================================== */
+.result-container {
+  margin-top: 32px;
+  display: none;
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.verdict-banner {
+  border-radius: var(--border-radius-lg);
+  padding: 26px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.verdict-banner.fraud {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border: 2px solid #f87171;
+}
+
+.verdict-banner.safe {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  border: 2px solid #34d399;
+}
+
+.verdict-tx-id {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 3px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  font-family: monospace;
+}
+
+.verdict-main h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.verdict-main p {
+  opacity: 0.95;
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+.verdict-meter-box {
+  text-align: right;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 20px;
+  border-radius: 12px;
+}
+
+.meter-percentage {
+  font-size: 2.2rem;
+  font-weight: 900;
+  font-family: monospace;
+}
+
+.meter-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* Dual Algorithm Breakdown Grid */
+.algorithms-breakdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.algo-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.algo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.algo-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.algo-acc-badge {
+  background: #dbeafe;
+  color: var(--primary-blue);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.algo-verdict-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.algo-prob-bar-bg {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.algo-prob-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.algo-prob-bar-fill.fraud {
+  background: var(--danger-red);
+}
+
+.algo-prob-bar-fill.safe {
+  background: var(--success-green);
+}
+
+/* Risk Analysis Details */
+.risk-details-card {
+  background: var(--bg-slate);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: 20px 24px;
+}
+
+.risk-details-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #334155;
+}
+
+.risk-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.risk-list li {
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   History Table Section
+   ========================================================================== */
+.history-section {
+  margin-bottom: 40px;
+}
+
+.history-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.clear-btn {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.clear-btn:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--card-shadow);
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.86rem;
+}
+
+.history-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: #475569;
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.history-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+.history-table tr:hover td {
+  background: #f8fafc;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-badge.fraud {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-badge.safe {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ==========================================================================
+   Algorithms Benchmark Section (Charts)
+   ========================================================================== */
+.algorithms-section {
+  margin-bottom: 40px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.chart-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.chart-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 280px;
+}
+
+/* ==========================================================================
+   Features Work Section (3 Cards from Screenshot 5)
+   ========================================================================== */
+.features-section {
+  margin-bottom: 40px;
+}
+
+.infographic-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.infographic-header {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pipeline-diagram {
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.step-circle {
+  width: 54px;
+  height: 54px;
+  background: #ffffff;
+  border: 2px solid var(--primary-blue);
+  color: var(--primary-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 10px rgba(11, 99, 206, 0.15);
+}
+
+.step-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.pipeline-arrow {
+  color: #0b63ce;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* 3 Feature Work Cards */
+.feature-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-num-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-badge-num {
+  background: var(--primary-blue);
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.feature-title-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.feature-subtitle {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.feature-description {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.feature-equation {
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   Public Protection Section
+   ========================================================================== */
+.protection-section {
+  margin-bottom: 40px;
+}
+
+.protection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.protection-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: 22px;
+  box-shadow: var(--card-shadow);
+}
+
+.protection-icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.protection-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+
+.protection-card p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   About Section & Team Showcase Modal
+   ========================================================================== */
+.about-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--border-radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 40px;
+}
+
+.about-simple-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  padding: 26px 32px;
+  box-shadow: var(--card-shadow);
+}
+
+.about-simple-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+  border-bottom: 2px solid #eff6ff;
+  padding-bottom: 8px;
+}
+
+.about-team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.about-label {
+  font-weight: 800;
+  color: var(--primary-blue);
+  min-width: 150px;
+}
+
+.about-name {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  border-top: 1px solid var(--border-light);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 992px) {
+  .hero-dark-card {
+    grid-template-columns: 1fr;
+  }
+  .card-showcase-wrapper {
+    margin-top: 20px;
+  }
+  .feature-work-grid {
+    grid-template-columns: 1fr;
+  }
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+  .algorithms-breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-header {
+    padding: 12px 16px;
+  }
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .header-mini-card {
+    display: none;
+  }
+  .pipeline-diagram {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .pipeline-arrow {
+    transform: rotate(90deg);
+  }
+}
