@@ -68,16 +68,15 @@ function calculateLiveDeltas() {
       ? `${oldDest.toFixed(2)} - ${newDest.toFixed(2)} - ${amount.toFixed(2)} = ${destDelta.toFixed(2)}`
       : `${newDest.toFixed(2)} - ${oldDest.toFixed(2)} - ${amount.toFixed(2)} = ${destDelta.toFixed(2)}`;
 
-    const isMerchantZero = type === "PAYMENT" && oldDest === 0 && newDest === 0;
-    const isMuleZero = (type === "TRANSFER" || type === "CASH_OUT") && oldDest === 0 && newDest === 0 && amount > 0;
+    const isUntrackedDest = (oldDest === 0.0 && newDest === 0.0);
 
     if (oldDest < 0 || newDest < 0) {
       destDeltaBadge.textContent = "NEGATIVE DEST";
       destDeltaBadge.className = "delta-val alert";
-    } else if (isMuleZero) {
-      destDeltaBadge.textContent = "MULE $0 DEST ALERT";
-      destDeltaBadge.className = "delta-val alert";
-    } else if (!isMerchantZero && Math.abs(destDelta) > 0.05) {
+    } else if (isUntrackedDest) {
+      destDeltaBadge.textContent = "Untracked (OK)";
+      destDeltaBadge.className = "delta-val normal";
+    } else if (Math.abs(destDelta) > 0.05) {
       destDeltaBadge.textContent = `MISMATCH (Δ ${destDelta >= 0 ? "+" : ""}${destDelta.toFixed(2)})`;
       destDeltaBadge.className = "delta-val alert";
     } else {
@@ -97,6 +96,44 @@ function calculateLiveDeltas() {
       systemFlagBadge.className = "delta-val normal";
     }
   }
+}
+
+// ==========================================================================
+// Auto-Calculate Safe Balances
+// ==========================================================================
+function autoBalanceAfterBalances() {
+  const type = document.getElementById("txType").value;
+  let amount = parseFloat(document.getElementById("txAmount").value) || 0.0;
+  if (amount <= 0) {
+    amount = 100.00;
+    document.getElementById("txAmount").value = "100.00";
+  }
+
+  let oldOrg = parseFloat(document.getElementById("oldbalanceOrg").value) || 0.0;
+  if (oldOrg < amount || oldOrg < 0) {
+    oldOrg = amount + 1000.00;
+    document.getElementById("oldbalanceOrg").value = oldOrg.toFixed(2);
+  }
+
+  let oldDest = parseFloat(document.getElementById("oldbalanceDest").value) || 0.0;
+  if (oldDest < 0) {
+    oldDest = 0.00;
+    document.getElementById("oldbalanceDest").value = "0.00";
+  }
+
+  if (type === "CASH_IN") {
+    document.getElementById("newbalanceOrig").value = (oldOrg + amount).toFixed(2);
+    if (oldDest > 0) {
+      document.getElementById("newbalanceDest").value = Math.max(0, oldDest - amount).toFixed(2);
+    }
+  } else {
+    document.getElementById("newbalanceOrig").value = (oldOrg - amount).toFixed(2);
+    if (oldDest > 0) {
+      document.getElementById("newbalanceDest").value = (oldDest + amount).toFixed(2);
+    }
+  }
+
+  calculateLiveDeltas();
 }
 
 // ==========================================================================
@@ -129,6 +166,39 @@ function loadPreset(presetKey) {
   };
 
   switch (presetKey) {
+    case "grocery_payment":
+      if (form.txId) form.txId.value = "TX-12048";
+      form.type.value = "PAYMENT";
+      form.amount.value = "45.00";
+      form.oldOrg.value = "1250.00";
+      form.newOrg.value = "1205.00";
+      form.oldDest.value = "0.00";
+      form.newDest.value = "0.00";
+      form.step.value = "14";
+      break;
+
+    case "atm_cashout":
+      if (form.txId) form.txId.value = "TX-33180";
+      form.type.value = "TRANSFER";
+      form.amount.value = "500.00";
+      form.oldOrg.value = "2500.00";
+      form.newOrg.value = "2000.00";
+      form.oldDest.value = "1000.00";
+      form.newDest.value = "1500.00";
+      form.step.value = "22";
+      break;
+
+    case "sender_mismatch":
+      if (form.txId) form.txId.value = "TX-77821";
+      form.type.value = "TRANSFER";
+      form.amount.value = "500.00";
+      form.oldOrg.value = "2000.00";
+      form.newOrg.value = "1800.00"; // Should be 1500!
+      form.oldDest.value = "0.00";
+      form.newDest.value = "0.00";
+      form.step.value = "18";
+      break;
+
     case "stolen_drain":
       if (form.txId) form.txId.value = "TX-98401";
       form.type.value = "TRANSFER";
@@ -149,39 +219,6 @@ function loadPreset(presetKey) {
       form.oldDest.value = "-0.02";
       form.newDest.value = "10000.00";
       form.step.value = "15";
-      break;
-
-    case "discrepancy_transfer":
-      if (form.txId) form.txId.value = "TX-55240";
-      form.type.value = "CASH_OUT";
-      form.amount.value = "240000.00";
-      form.oldOrg.value = "240000.00";
-      form.newOrg.value = "0.00";
-      form.oldDest.value = "15000.00";
-      form.newDest.value = "0.00";
-      form.step.value = "104";
-      break;
-
-    case "grocery_payment":
-      if (form.txId) form.txId.value = "TX-12048";
-      form.type.value = "PAYMENT";
-      form.amount.value = "42.50";
-      form.oldOrg.value = "1250.00";
-      form.newOrg.value = "1207.50";
-      form.oldDest.value = "500.00";
-      form.newDest.value = "542.50";
-      form.step.value = "14";
-      break;
-
-    case "atm_cashout":
-      if (form.txId) form.txId.value = "TX-33180";
-      form.type.value = "TRANSFER";
-      form.amount.value = "500.00";
-      form.oldOrg.value = "2500.00";
-      form.newOrg.value = "2000.00";
-      form.oldDest.value = "1000.00";
-      form.newDest.value = "1500.00";
-      form.step.value = "22";
       break;
   }
 

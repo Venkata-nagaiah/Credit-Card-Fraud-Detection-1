@@ -106,21 +106,24 @@
 
       <!-- Quick Test Preset Buttons -->
       <div class="presets-bar">
-        <span class="presets-label">⚡ Quick Test Presets:</span>
-        <button type="button" class="preset-chip fraud" onclick="loadPreset('stolen_drain')">
-          🚨 Stolen Card Drain Fraud ($500k)
-        </button>
-        <button type="button" class="preset-chip fraud" onclick="loadPreset('negative_mismatch')">
-          🚨 Negative / Mismatch Fraud (-0.07 ➔ 10000)
-        </button>
-        <button type="button" class="preset-chip fraud" onclick="loadPreset('discrepancy_transfer')">
-          ⚠️ Balance Discrepancy Fraud ($240k)
-        </button>
+        <span class="presets-label">⚡ Test Presets:</span>
         <button type="button" class="preset-chip safe" onclick="loadPreset('grocery_payment')">
-          ✅ Safe Balanced Payment ($42.50)
+          ✅ Safe Legitimate Payment ($45)
         </button>
         <button type="button" class="preset-chip safe" onclick="loadPreset('atm_cashout')">
-          ✅ Safe Balanced Transfer ($500)
+          ✅ Safe Legitimate Transfer ($500)
+        </button>
+        <button type="button" class="preset-chip fraud" onclick="loadPreset('sender_mismatch')">
+          🚨 Fraud - Balance Mismatch
+        </button>
+        <button type="button" class="preset-chip fraud" onclick="loadPreset('stolen_drain')">
+          🚨 Fraud - Account Drain ($500k)
+        </button>
+        <button type="button" class="preset-chip fraud" onclick="loadPreset('negative_mismatch')">
+          🚨 Fraud - Negative (-0.07)
+        </button>
+        <button type="button" class="preset-chip" style="background:#e0f2fe; color:#0369a1; border-color:#93c5fd;" onclick="autoBalanceAfterBalances()">
+          ⚡ Auto-Calculate Safe Balances
         </button>
       </div>
 
